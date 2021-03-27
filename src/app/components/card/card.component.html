@@ -1,0 +1,10 @@
+<div  id="card-container">
+    <div class="card" (click)="flipCard()" [@cardFlip]="metadata.state">
+        <div class="card-face card-obverse">
+            <img [src]="metadata.imageLoc"/>
+        </div>
+        <div class="card-face card-reverse">
+            <img [src]="metadata.backOfCard" />
+        </div>
+    </div>
+</div>
