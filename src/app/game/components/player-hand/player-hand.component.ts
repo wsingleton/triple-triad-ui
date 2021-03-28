@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 interface HandMetadata {
+  hand: Object[];
   spread: boolean;
 }
 
@@ -11,11 +12,12 @@ interface HandMetadata {
 })
 export class PlayerHandComponent implements OnInit {
 
+  @Input() hand = new Array(5);
+
   metadata: HandMetadata = {
+    hand: this.hand,
     spread: true
   }
-
-  constructor() { }
 
   ngOnInit(): void {
   }
