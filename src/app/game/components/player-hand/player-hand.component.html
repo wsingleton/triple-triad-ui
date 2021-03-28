@@ -1,3 +1,5 @@
-<div id="player-hand-container" *ngFor="let card of hand">
-    <card-space class="card" [cardData]="card" [isFieldSpace]="false"></card-space>
+<div id="player-hand-container">
+    <div *ngFor="let card of hand; let i = index">
+        <card-space id="card{{i}}" class="card" [cardData]="card" [isFieldSpace]="false"></card-space>
+    </div>
 </div>
