@@ -4,21 +4,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BattleFieldComponent } from './components/battle-field/battle-field.component';
-import { CardSpaceComponent } from './components/card-space/card-space.component';
-import { CardComponent } from './components/card/card.component';
+import { GameModule } from './game/game.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    BattleFieldComponent,
-    CardSpaceComponent,
-    CardComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    GameModule
   ],
   providers: [],
   bootstrap: [AppComponent]
