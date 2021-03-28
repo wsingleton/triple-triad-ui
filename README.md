@@ -25,3 +25,13 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## To-Dos
+
+- Make player-hand card animation to spread them vertically down, while overlapping one another
+	
+- implement basic navbar, login, and register components
+	
+- set up basic routing
+	
+- Begin planning on API development
