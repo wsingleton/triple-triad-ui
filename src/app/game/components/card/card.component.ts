@@ -21,18 +21,16 @@ interface CardMetaData {
         'background-color': 'darkred',
         transform: 'none'
       })),
-      transition('default => stolen', sequence([
-        animate('500ms', style({
+      transition('default => stolen', animate('500ms', style({
           'background-color': 'darkred',
           transform: 'rotateY(360deg)'
         }))
-      ])),
-      transition('stolen => default', sequence([
-        animate('500ms', style({
+      ),
+      transition('stolen => default', animate('500ms', style({
           'background-color': 'darkblue',
           transform: 'rotateY(360deg)'
         }))
-      ]))
+      )
     ])
   ]
 })
