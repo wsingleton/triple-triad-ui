@@ -1,46 +1,23 @@
-:host {
-    display: block;
-    perspective: 27.5rem;
-}
-
 .card {
     border-color: #fff;
-    border-radius: .313rem;
+    border-radius: 5px;
     height: 19rem;
     width: 17rem;
-    position: relative;
     transform-style: preserve-3d;
 }
 
 .card-face {
-    display: block;
     position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: inherit;
-    backface-visibility: hidden;
 
     > img {
-        width: 100%;
-        height: 100%;
+        width: inherit;
+        height: inherit;
         object-fit: fill;
-        border-radius: inherit;
     }
-}
-
-.card-ranks {
-    position: absolute;
-    height: 25%;
-    width: 25%;
-    top: 0;
-    left: 0;
-    z-index: 1;
 }
 
 .card-reverse {
     transform: rotateY(180deg);
-}
-
-.card-obverse {
-    z-index: 2;
 }

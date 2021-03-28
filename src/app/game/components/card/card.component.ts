@@ -1,14 +1,9 @@
-import { Component } from '@angular/core';
-import { trigger, state, style, transition, animate, sequence } from '@angular/animations';
-
-interface CardMetaData {
-  imageLoc: string;
-  backOfCard: 'assets/cards/card-reversed.png';
-  state: 'default' | 'stolen';
-}
+import { Component, Input, OnInit } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Card } from '../../models/card';
 
 @Component({
-  selector: 'card',
+  selector: 'card[cardData]',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
   animations: [
@@ -34,20 +29,32 @@ interface CardMetaData {
     ])
   ]
 })
-export class CardComponent {
+export class CardComponent implements OnInit {
 
-  metadata: CardMetaData = {
-    backOfCard: 'assets/cards/card-reversed.png',
-    imageLoc: 'assets/cards/level-6/elvoret/elvoret-edited.png',
-    state: 'default'
-  };
+  @Input() cardData!: Card;
 
-  flipCard() {
-    if (this.metadata.state === "default") {
-      this.metadata.state = 'stolen';
-    } else {
-      this.metadata.state = 'default';
+  constructor() {}
+
+  ngOnInit(): void {
+    console.log(this.cardData);
+  }
+
+  flipCard(): void {
+
+    console.log('in card.flipCard()');
+
+    if (!this.cardData || !this.cardData.inPlay) {
+      return;  
     }
+
+    if (!this.cardData.isStolen) {
+      this.cardData.currentState = 'stolen';
+    } else {
+      this.cardData.currentState = 'default';
+    }
+
+    this.cardData.isStolen = !this.cardData.isStolen;
+
   }
 
 }
