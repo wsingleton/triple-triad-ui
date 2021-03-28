@@ -1,16 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Card } from '../../models/card';
+import { CardComponent } from '../card/card.component';
 
+interface CardSpaceMetadata {
+  containsCard: boolean;
+  isFieldSpace: boolean;
+}
 
 @Component({
-  selector: 'card-space',
+  selector: 'card-space[cardData][isFieldSpace]',
   templateUrl: './card-space.component.html',
   styleUrls: ['./card-space.component.scss']
 })
 export class CardSpaceComponent implements OnInit {
 
-  constructor() { }
+  @Input() cardData!: Card;
+  @Input() isFieldSpace!: boolean;
+  @ViewChild(CardComponent) cardComponent!: CardComponent
+  
+  metadata!: CardSpaceMetadata
+
+  constructor() {}
 
   ngOnInit(): void {
+    this.metadata = {
+      containsCard: true,
+      isFieldSpace: this.isFieldSpace
+    }
+  }
+
+  flipCard() {
+    if (this.metadata.isFieldSpace) {
+      this.cardComponent.flipCard();
+    }
   }
   
 }
