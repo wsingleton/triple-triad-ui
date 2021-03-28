@@ -1,11 +1,5 @@
-<div id="battle-field-container" class="grid">
-    <card-space id="t-l-card" class="card"></card-space>
-    <card-space id="t-m-card" class="card"></card-space>
-    <card-space id="t-r-card" class="card"></card-space>
-    <card-space id="c-l-card" class="card"></card-space>
-    <card-space id="c-m-card" class="card"></card-space>
-    <card-space id="c-r-card" class="card"></card-space>
-    <card-space id="b-l-card" class="card"></card-space>
-    <card-space id="b-m-card" class="card"></card-space>
-    <card-space id="b-r-card" class="card"></card-space>
+<div class="grid">
+    <div *ngFor="let card of dummyCards">
+        <card-space class="card" [cardData]="card" [isFieldSpace]=true></card-space>
+    </div>
 </div>
