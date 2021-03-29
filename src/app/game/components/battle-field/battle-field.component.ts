@@ -9,15 +9,15 @@ import { Card } from '../../models/card';
 export class BattleFieldComponent implements OnInit {
 
   dummyCards = [
-    new Card('jshhe93rhi', 'Quistis', 9, 10, 6, 2, 'assets/cards/level-10/quistis/quistis.png', true),
-    new Card('ig538394hh', 'Elvoret', 7, 4, 8, 3, 'assets/cards/level-6/elvoret/elvoret-edited.png', true),
+    new Card('jshhe93rhi', 'Quistis', 9, 10, 6, 2, 'assets/cards/level-10/quistis-card.png', true),
+    new Card('ig538394hh', 'Oilboyle', 1, 8, 4, 8, 'assets/cards/level-6/oilboyle-card.png', true),
     new Card('g343545g45', 'Quistis', 9, 10, 6, 2, 'assets/cards/level-10/quistis/quistis.png', true),
-    new Card('g46g4b544g', 'Elvoret', 7, 4, 8, 3, 'assets/cards/level-6/elvoret/elvoret-edited.png', true),
-    new Card('ser43rewe4', 'Elvoret', 7, 4, 8, 3, 'assets/cards/level-6/elvoret/elvoret-edited.png', true),
-    new Card('lkji8943ok', 'Elvoret', 7, 4, 8, 3, 'assets/cards/level-6/elvoret/elvoret-edited.png', true),
-    new Card('ky7n66645s', 'Elvoret', 7, 4, 8, 3, 'assets/cards/level-6/elvoret/elvoret-edited.png', true),
-    new Card('qwe9jj3fff', 'Elvoret', 7, 4, 8, 3, 'assets/cards/level-6/elvoret/elvoret-edited.png', true),
-    new Card('pooiuy7332', 'Elvoret', 7, 4, 8, 3, 'assets/cards/level-6/elvoret/elvoret-edited.png', true)
+    new Card('g46g4b544g', 'Oilboyle', 1, 8, 4, 8, 'assets/cards/level-6/oilboyle-card.png', true),
+    new Card('ser43rewe4', 'Oilboyle', 1, 8, 4, 8, 'assets/cards/level-6/oilboyle-card.png', true),
+    new Card('lkji8943ok', 'Oilboyle', 1, 8, 4, 8, 'assets/cards/level-6/oilboyle-card.png', true),
+    new Card('ky7n66645s', 'Oilboyle', 1, 8, 4, 8, 'assets/cards/level-6/oilboyle-card.png', true),
+    new Card('qwe9jj3fff', 'Oilboyle', 1, 8, 4, 8, 'assets/cards/level-6/oilboyle-card.png', true),
+    new Card('pooiuy7332', 'Oilboyle', 1, 8, 4, 8, 'assets/cards/level-6/oilboyle-card.png', true)
   ];
 
   constructor() { }

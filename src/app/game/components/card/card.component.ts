@@ -9,11 +9,11 @@ import { Card } from '../../models/card';
   animations: [
     trigger('cardFlip', [
       state('default', style({
-        'background-color': 'darkblue',
+        'background-image': 'linear-gradient(#e5fdfd, #105db5)',
         transform: 'none'
       })),
       state('stolen', style({
-        'background-color': 'darkred',
+        'background-image': 'linear-gradient(#ecd8d8, #c65d7b)',
         transform: 'none'
       })),
       transition('default => stolen', animate('500ms', style({
