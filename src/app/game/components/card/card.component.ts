@@ -41,16 +41,8 @@ export class CardComponent implements OnInit {
 
   flipCard(): void {
 
-    console.log('in card.flipCard()');
-
     if (!this.cardData || !this.cardData.inPlay) {
       return;  
-    }
-
-    if (!this.cardData.isStolen) {
-      this.cardData.currentState = 'stolen';
-    } else {
-      this.cardData.currentState = 'default';
     }
 
     this.cardData.isStolen = !this.cardData.isStolen;
