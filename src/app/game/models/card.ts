@@ -7,12 +7,10 @@ export class Card {
     bottomRank: number;
     leftRank: number;
     obverseImage: string;
-    reverseImage = 'assets/cards/card-reversed.png';
-    isStolen = false;
-    inPlay = false;
-    currentState = 'default';
+    isStolen: boolean;
+    inPlay: boolean;
 
-    constructor(id: string, name: string, tRank: number, rRank: number, bRank: number, lRank: number, obImg: string, inPlay?: boolean) {
+    constructor(id: string, name: string, tRank: number, rRank: number, bRank: number, lRank: number, obImg: string, inPlay?: boolean, isStolen?: boolean) {
         this.id = id;
         this.name = name;
         this.topRank = tRank;
@@ -21,6 +19,17 @@ export class Card {
         this.leftRank = lRank;
         this.obverseImage = obImg;
         this.inPlay = inPlay || false;
+        this.isStolen = isStolen || false;
     }
+
+    get currentState() {
+        return this.isStolen ? 'stolen' : 'default';
+    }
+
+    get reverseImage() {
+        return 'assets/cards/card-reversed.png';
+    }
+
+    
 
 }
