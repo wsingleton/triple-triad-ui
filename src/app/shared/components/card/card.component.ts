@@ -33,8 +33,6 @@ export class CardComponent implements OnInit {
 
   @Input() cardData!: Card;
 
-  constructor() {}
-
   ngOnInit(): void {
     console.log(this.cardData);
   }

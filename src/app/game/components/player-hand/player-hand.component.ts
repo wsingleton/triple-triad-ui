@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Card } from '../../models/card';
+import { Component, Input } from '@angular/core';
+import { Card } from '../../../shared/models/card';
 
 interface HandMetadata {
   hand: Object[];
@@ -11,16 +11,17 @@ interface HandMetadata {
   templateUrl: './player-hand.component.html',
   styleUrls: ['./player-hand.component.scss']
 })
-export class PlayerHandComponent implements OnInit {
+export class PlayerHandComponent {
 
   @Input() hand!: Card[];
 
-  metadata: HandMetadata = {
-    hand: this.hand,
-    spread: true
-  }
+  metadata!: HandMetadata;
 
   ngOnInit(): void {
+    this.metadata = {
+      hand: this.hand,
+      spread: true
+    }
   }
 
 }

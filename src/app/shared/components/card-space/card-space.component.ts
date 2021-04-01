@@ -20,8 +20,6 @@ export class CardSpaceComponent implements OnInit {
   
   metadata!: CardSpaceMetadata
 
-  constructor() {}
-
   ngOnInit(): void {
     this.metadata = {
       containsCard: true,
