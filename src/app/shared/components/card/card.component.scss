@@ -21,3 +21,23 @@
 .card-reverse {
     transform: rotateY(180deg);
 }
+
+.opponentCard.selected {
+    transition: transform 1s;
+    transform: translateX(25%);
+}
+
+.playerCard.selected {
+    transition: transform 1s;
+    transform: translateX(-25%);
+}
+
+.opponentCard.unselected {
+    transition: transform 1s;
+    transform: translateX(0%);
+}
+
+.playerCard.unselected {
+    transition: transform 1s;
+    transform: translateX(0%);
+}

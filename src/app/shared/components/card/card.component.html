@@ -1,5 +1,15 @@
 <div id="card-container">
-    <div #card class="card" *ngIf="cardData; else emptyCard" [@cardAnimation]="cardData?.currentState">
+    <div #card 
+        [ngClass]="{
+            'card': true, 
+            'opponentCard': cardData.isStolen, 
+            'playerCard': !cardData.isStolen, 
+            'selected': cardData.isSelected,
+            'unselected': !cardData.isSelected
+        }" 
+        *ngIf="cardData; else emptyCard"
+        [@cardAnimation]="cardData?.currentState"
+    >
         <div class="card-face" [ngStyle]="{'background-image': (cardData.isStolen ? 'linear-gradient(#ecd8d8, #c65d7b)' : 'linear-gradient(#e5fdfd, #105db5)')}">
             <img [src]="cardData?.obverseImage"/>
         </div>
