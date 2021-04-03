@@ -5,7 +5,7 @@
             'opponentCard': cardData.isStolen, 
             'playerCard': !cardData.isStolen, 
             'selected': cardData.isSelected,
-            'unselected': !cardData.isSelected
+            'unselected': !cardData.isSelected && !cardData.inPlay
         }" 
         *ngIf="cardData; else emptyCard"
         [@cardAnimation]="cardData?.currentState"
