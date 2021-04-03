@@ -14,15 +14,19 @@ interface CardSpaceMetadata {
 })
 export class CardSpaceComponent implements OnInit {
 
-  @Input() cardData!: Card;
+  @Input() cardData: Card | null;
   @Input() isFieldSpace!: boolean;
   @ViewChild(CardComponent) cardComponent!: CardComponent
   
   metadata!: CardSpaceMetadata
 
+  constructor() {
+    this.cardData = null;
+  }
+
   ngOnInit(): void {
     this.metadata = {
-      containsCard: true,
+      containsCard: !!(this.cardData),
       isFieldSpace: this.isFieldSpace
     }
   }
@@ -30,6 +34,12 @@ export class CardSpaceComponent implements OnInit {
   flipCard() {
     if (this.metadata.isFieldSpace) {
       this.cardComponent.flipCard();
+    }
+  }
+
+  selectCard() {
+    if (!this.metadata.isFieldSpace) {
+      this.cardComponent.selectCard();
     }
   }
   
