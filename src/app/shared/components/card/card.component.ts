@@ -1,40 +1,67 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { trigger, state, style, transition, animate, AnimationBuilder, query, animation, useAnimation, AnimationPlayer } from '@angular/animations';
 import { Card } from '../../models/card';
+
+const selectPlayerCardAnimation = animation([
+  state('selected', style({
+    'transform': 'translateX(-25%)'
+  })),
+  transition('selected => unselected', animate('1s', style({
+    'transform': 'translateX(0%)'
+  }))),
+  transition('unselected => selected', animate('1s', style({
+    'transform': 'translateX(-25%)'
+  })))
+]);
+
+const selectOpponentCardAnimation = animation([
+  state('selected', style({
+    'transform': 'translateX(25%)'
+  })),
+  transition('selected => unselected', animate('1s', style({
+    'transform': 'translateX(0%)'
+  }))),
+  transition('unselected => selected', animate('1s', style({
+    'transform': 'translateX(25%)'
+  })))
+]);
 
 @Component({
   selector: 'card[cardData]',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
   animations: [
-    trigger('cardFlip', [
-      state('default', style({
-        'background-image': 'linear-gradient(#e5fdfd, #105db5)',
-        transform: 'none'
-      })),
-      state('stolen', style({
-        'background-image': 'linear-gradient(#ecd8d8, #c65d7b)',
-        transform: 'none'
+    trigger('cardAnimation', [
+      state('selected', style({
+        'transform': 'translateX(25%)'
       })),
       transition('default => stolen', animate('500ms', style({
-          'background-color': 'darkred',
-          transform: 'rotateY(360deg)'
-        }))
-      ),
+        'transform': 'rotateY(360deg)'
+      }))),
       transition('stolen => default', animate('500ms', style({
-          'background-color': 'darkblue',
-          transform: 'rotateY(360deg)'
-        }))
-      )
+        'transform': 'rotateY(360deg)'
+      }))),
+      transition('selected => unselected', animate('250ms', style({
+        'transform': 'translateX(0%)'
+      }))),
+      transition('unselected => selected', animate('250ms', style({
+        'transform': 'translateX(25%)'
+      })))
     ])
   ]
 })
-export class CardComponent implements OnInit {
+export class CardComponent implements AfterViewInit {
 
-  @Input() cardData!: Card;
+  @Input() cardData: Card | null;
+  @ViewChild('card') cardElement!: ElementRef;
+  animationPlayer!: AnimationPlayer;
 
-  ngOnInit(): void {
-    console.log(this.cardData);
+  constructor(private animationBuilder: AnimationBuilder) {
+    this.cardData = null;
+  }
+
+  ngAfterViewInit(): void {
+    console.log(this.cardElement);
   }
 
   flipCard(): void {
@@ -45,6 +72,35 @@ export class CardComponent implements OnInit {
 
     this.cardData.isStolen = !this.cardData.isStolen;
 
+  }
+
+  selectCard(): void {
+
+    if (!this.cardData || this.cardData.inPlay) {
+      return;
+    }
+
+    // if (this.cardData?.isStolen) {
+    //   console.log(this.cardElement);
+    //   this.animationPlayer = this.animationBuilder.build([
+    //     useAnimation(selectOpponentCardAnimation)
+    //   ]).create(this.cardElement.nativeElement);
+    // } else {
+    //   console.log(this.cardElement);
+    //   this.animationPlayer = this.animationBuilder.build([
+    //     useAnimation(selectPlayerCardAnimation)
+    //   ]).create(this.cardElement.nativeElement);
+    // }
+
+    // this.animationPlayer.onDone(() => {
+    //   console.log('animation complete!');
+    //   this.animationPlayer.destroy();
+    // });
+
+    // this.animationPlayer.play();
+
+    this.cardData.isSelected = !this.cardData.isSelected;
+    
   }
 
 }
