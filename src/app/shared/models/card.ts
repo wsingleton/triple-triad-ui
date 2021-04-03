@@ -9,8 +9,15 @@ export class Card {
     obverseImage: string;
     isStolen: boolean;
     inPlay: boolean;
+    isSelected: boolean;
 
-    constructor(id: string, name: string, tRank: number, rRank: number, bRank: number, lRank: number, obImg: string, inPlay?: boolean, isStolen?: boolean) {
+    constructor(
+        id: string, name: string, 
+        tRank: number, rRank: number, 
+        bRank: number, lRank: number, 
+        obImg: string, inPlay?: boolean, 
+        isStolen?: boolean, isSelected?: boolean) 
+    {
         this.id = id;
         this.name = name;
         this.topRank = tRank;
@@ -20,10 +27,17 @@ export class Card {
         this.obverseImage = obImg;
         this.inPlay = inPlay || false;
         this.isStolen = isStolen || false;
+        this.isSelected = isSelected || false;
     }
 
     get currentState() {
-        return this.isStolen ? 'stolen' : 'default';
+
+        if (this.inPlay) {
+            return this.isStolen ? 'stolen' : 'default';
+        } else {
+            return this.isSelected ? 'selected' : 'unselected';
+        }
+        
     }
 
     get reverseImage() {
