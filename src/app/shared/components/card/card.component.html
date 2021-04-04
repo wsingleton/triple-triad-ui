@@ -2,20 +2,21 @@
     <div #card 
         [ngClass]="{
             'card': true, 
-            'opponentCard': cardData.isStolen, 
-            'playerCard': !cardData.isStolen, 
-            'selected': cardData.isSelected,
-            'unselected': !cardData.isSelected && !cardData.inPlay
-        }" 
-        *ngIf="cardData; else emptyCard"
+            'opponentCard': cardData?.isStolen, 
+            'playerCard': !cardData?.isStolen, 
+            'selected': cardData?.isSelected,
+            'unselected': !cardData?.isSelected && !cardData?.inPlay
+        }"
         [@cardAnimation]="cardData?.currentState"
     >
-        <div class="card-face" [ngStyle]="{'background-image': (cardData.isStolen ? 'linear-gradient(#ecd8d8, #c65d7b)' : 'linear-gradient(#e5fdfd, #105db5)')}">
+        <div *ngIf="cardData" class="card-face" [ngStyle]="{'background-image': (cardData?.isStolen ? 'linear-gradient(#ecd8d8, #c65d7b)' : 'linear-gradient(#e5fdfd, #105db5)')}">
             <img [src]="cardData?.obverseImage"/>
         </div>
-        <div *ngIf="cardData.inPlay" class="card-face card-reverse">
+        <div *ngIf="cardData?.inPlay" class="card-face card-reverse">
             <img [src]="cardData?.reverseImage" />
         </div>
+        <div *ngIf="!cardData" class="card-face">
+            <img src="assets/cards/empty-card-placeholder.png"/>
+        </div>
     </div>
-    <ng-template #emptyCard>Empty card space placeholder</ng-template>
 </div>

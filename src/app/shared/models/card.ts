@@ -44,6 +44,8 @@ export class Card {
         return 'assets/cards/card-reversed.png';
     }
 
-    
+    get owner() {
+        return this.isStolen ? 'opponent' : 'player';
+    }   
 
 }
