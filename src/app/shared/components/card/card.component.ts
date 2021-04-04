@@ -20,9 +20,11 @@ import { Card } from '../../models/card';
 export class CardComponent {
 
   @Input() cardData: Card | null;
+  @Input() isFieldCard: boolean;
 
   constructor(private cdRef: ChangeDetectorRef) {
     this.cardData = null;
+    this.isFieldCard = false;
   }
 
   flipCard(): void {
