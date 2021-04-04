@@ -1,5 +1,12 @@
 <div class="grid">
-    <div *ngFor="let card of dummyCards">
-        <card-space [cardData]="card" [isFieldSpace]=true></card-space>
+    <div *ngFor="let card of fieldCards; let i = index">
+        <card-space 
+            #cardSpace 
+            [id]="i"  
+            [cardData]="card" 
+            [isFieldSpace]=true
+            (click)="getCardPosition($event)"
+            (stateChanged)="detectChange(cardSpace)">
+        </card-space>
     </div>
 </div>
