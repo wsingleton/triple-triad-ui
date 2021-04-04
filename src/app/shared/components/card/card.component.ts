@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { trigger, style, transition, animate } from '@angular/animations';
 import { Card } from '../../models/card';
 
@@ -22,7 +22,7 @@ export class CardComponent {
 
   @Input() cardData: Card | null;
 
-  constructor() {
+  constructor(private cdRef: ChangeDetectorRef) {
     this.cardData = null;
   }
 
@@ -33,6 +33,7 @@ export class CardComponent {
     }
 
     this.cardData.isStolen = !this.cardData.isStolen;
+    this.cdRef.detectChanges();
 
   }
 
