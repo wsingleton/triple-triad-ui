@@ -18,7 +18,7 @@ export class CardSpaceComponent implements OnInit, OnChanges {
   @Input() isFieldSpace!: boolean;
   @ViewChild(CardComponent) cardComponent!: CardComponent;
 
-  @Output() stateChanged = new EventEmitter<SimpleChanges>();
+  @Output() cardAdded = new EventEmitter<SimpleChanges>();
   
   metadata!: CardSpaceMetadata
 
@@ -27,9 +27,7 @@ export class CardSpaceComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.cardData) {
-      this.stateChanged.emit(changes);
-    }
+    if (this.cardData) this.cardAdded.emit(changes);
   }
 
   ngOnInit(): void {
@@ -40,15 +38,11 @@ export class CardSpaceComponent implements OnInit, OnChanges {
   }
 
   flipCard() {
-    if (this.metadata.isFieldSpace) {
-      this.cardComponent.flipCard();
-    }
+    this.metadata.isFieldSpace && this.cardComponent.flipCard();
   }
 
   peekCard() {
-    if (!this.metadata.isFieldSpace) {
-      this.cardComponent.selectCard();
-    }
+    (!this.metadata.isFieldSpace) && this.cardComponent.selectCard();
   }
 
   get currentPosition() {
