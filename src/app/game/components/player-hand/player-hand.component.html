@@ -1,5 +1,14 @@
 <div id="player-hand-container">
     <div *ngFor="let card of hand; let i = index">
-        <card-space id="card{{i}}" [cardData]="card" [isFieldSpace]="false"></card-space>
+        <card-space 
+            #cardSpace
+            [id]="i" 
+            class="card{{i}}"
+            (mouseenter)="peekCard(cardSpace)" 
+            (mouseleave)="peekCard(cardSpace)"
+            (click)="selectCard(cardSpace)"
+            [cardData]="card" 
+            [isFieldSpace]="false">
+        </card-space>
     </div>
 </div>
