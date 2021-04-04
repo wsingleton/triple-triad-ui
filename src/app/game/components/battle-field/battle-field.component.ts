@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CardSpaceComponent } from 'src/app/shared/components/card-space/card-space.component';
 import { Card } from '../../../shared/models/card';
