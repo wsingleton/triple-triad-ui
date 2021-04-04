@@ -6,7 +6,7 @@
             [cardData]="card" 
             [isFieldSpace]=true
             (click)="getCardPosition($event)"
-            (stateChanged)="detectChange(cardSpace)">
+            (cardAdded)="compareAdjacentSpaces(cardSpace)">
         </card-space>
     </div>
 </div>
