@@ -2,7 +2,6 @@ import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { trigger, style, transition, animate } from '@angular/animations';
 import { Card } from '../../models/card';
 
-
 @Component({
   selector: 'card[cardData]',
   templateUrl: './card.component.html',
@@ -27,24 +26,15 @@ export class CardComponent {
   }
 
   flipCard(): void {
-
-    if (!this.cardData || !this.cardData.inPlay) {
-      return;  
-    }
-
+    if (!this.cardData || !this.cardData.inPlay) return;
     this.cardData.isStolen = !this.cardData.isStolen;
     this.cdRef.detectChanges();
-
   }
 
   selectCard(): void {
-
-    if (!this.cardData || this.cardData.inPlay) {
-      return;
-    }
-
+    if (!this.cardData || this.cardData.inPlay) return;
     this.cardData.isSelected = !this.cardData.isSelected;
-    
+    this.cdRef.detectChanges();
   }
 
 }
