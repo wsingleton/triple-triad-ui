@@ -26,130 +26,74 @@ export class BattleFieldComponent implements OnInit {
     this.gameService.updateDestinationIndex(+(<HTMLElement>$event.currentTarget)?.id);
   }
 
-  flipCard(cardSpace: CardSpaceComponent) {
-    cardSpace.flipCard();
-  }
-
-  detectChange(cardSpace: CardSpaceComponent) {
-    console.log('FIELD CHANGE DETECTED!');
-    console.log(this.cardSpaces);
-    console.log(cardSpace);
+  compareAdjacentSpaces(cardSpace: CardSpaceComponent) {
 
     let card = cardSpace.cardData!;
     let cardPosition = cardSpace.currentPosition;
-    let shouldFlip: boolean;
+    let spaces = this.cardSpaces['_results'];
+
     switch (cardPosition) {
       case 0:
-        shouldFlip = this.shouldFlipCardBelow(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition + 3].flipCard();
-
-        shouldFlip = this.shouldFlipCardToRight(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition + 1].flipCard();
-
+        this.shouldFlipCardBelow(card, cardPosition) && spaces[cardPosition + 3].flipCard();
+        this.shouldFlipCardToRight(card, cardPosition) && spaces[cardPosition + 1].flipCard();
         break;
 
       case 1:
-        shouldFlip = this.shouldFlipCardToLeft(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition - 1].flipCard();
-
-        shouldFlip = this.shouldFlipCardToRight(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition + 1].flipCard();
-
-        shouldFlip = this.shouldFlipCardBelow(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition + 3].flipCard();
-
+        this.shouldFlipCardToLeft(card, cardPosition) && spaces[cardPosition - 1].flipCard();
+        this.shouldFlipCardToRight(card, cardPosition) && spaces[cardPosition + 1].flipCard();
+        this.shouldFlipCardBelow(card, cardPosition) && spaces[cardPosition + 3].flipCard();
         break;
 
       case 2:
-        shouldFlip = this.shouldFlipCardBelow(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition + 3].flipCard();
-        
-        shouldFlip = this.shouldFlipCardToLeft(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition - 1].flipCard();
-
+        this.shouldFlipCardBelow(card, cardPosition) && spaces[cardPosition + 3].flipCard();
+        this.shouldFlipCardToLeft(card, cardPosition) && spaces[cardPosition - 1].flipCard();
         break;
 
       case 3:
-        shouldFlip = this.shouldFlipCardAbove(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition - 3].flipCard();
-        
-        shouldFlip = this.shouldFlipCardToRight(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition + 1].flipCard();
-
-        shouldFlip = this.shouldFlipCardBelow(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition + 3].flipCard();
-
+        this.shouldFlipCardAbove(card, cardPosition) && spaces[cardPosition - 3].flipCard();
+        this.shouldFlipCardToRight(card, cardPosition) && spaces[cardPosition + 1].flipCard();
+        this.shouldFlipCardBelow(card, cardPosition) && spaces[cardPosition + 3].flipCard();
         break;
 
       case 4:
-        shouldFlip = this.shouldFlipCardAbove(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition - 3].flipCard();
-
-        shouldFlip = this.shouldFlipCardToLeft(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition - 1].flipCard();
-
-        shouldFlip = this.shouldFlipCardToRight(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition + 1].flipCard();
-
-        shouldFlip = this.shouldFlipCardBelow(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition + 3].flipCard();
-
+        this.shouldFlipCardAbove(card, cardPosition) && spaces[cardPosition - 3].flipCard();
+        this.shouldFlipCardToLeft(card, cardPosition) && spaces[cardPosition - 1].flipCard();
+        this.shouldFlipCardToRight(card, cardPosition) && spaces[cardPosition + 1].flipCard();
+        this.shouldFlipCardBelow(card, cardPosition) && spaces[cardPosition + 3].flipCard();
         break;
+
       case 5:
-        shouldFlip = this.shouldFlipCardAbove(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition - 3].flipCard();
-        
-        shouldFlip = this.shouldFlipCardToLeft(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition - 1].flipCard();
-
-        shouldFlip = this.shouldFlipCardBelow(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition + 3].flipCard();
-
+        this.shouldFlipCardAbove(card, cardPosition) && spaces[cardPosition - 3].flipCard();
+        this.shouldFlipCardToLeft(card, cardPosition) && spaces[cardPosition - 1].flipCard();
+        this.shouldFlipCardBelow(card, cardPosition) && spaces[cardPosition + 3].flipCard();
         break;
 
       case 6:
-        shouldFlip = this.shouldFlipCardAbove(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition - 3].flipCard();
-
-        shouldFlip = this.shouldFlipCardToRight(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition + 1].flipCard();
-
+        this.shouldFlipCardAbove(card, cardPosition) && spaces[cardPosition - 3].flipCard();
+        this.shouldFlipCardToRight(card, cardPosition) && spaces[cardPosition + 1].flipCard();
         break;
+
       case 7:
-        shouldFlip = this.shouldFlipCardAbove(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition - 3].flipCard();
-
-        shouldFlip = this.shouldFlipCardToLeft(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition - 1].flipCard();
-
-        shouldFlip = this.shouldFlipCardToRight(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition + 1].flipCard();
-
+        this.shouldFlipCardAbove(card, cardPosition) && spaces[cardPosition - 3].flipCard();
+        this.shouldFlipCardToLeft(card, cardPosition) && spaces[cardPosition - 1].flipCard();
+        this.shouldFlipCardToRight(card, cardPosition) && spaces[cardPosition + 1].flipCard();
         break;
+
       case 8:
-        shouldFlip = this.shouldFlipCardAbove(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition - 3].flipCard();
-
-        shouldFlip = this.shouldFlipCardToLeft(card, cardPosition);
-        if (shouldFlip) this.cardSpaces['_results'][cardPosition - 1].flipCard();
-
+        this.shouldFlipCardAbove(card, cardPosition) && spaces[cardPosition - 3].flipCard();
+        this.shouldFlipCardToLeft(card, cardPosition) && spaces[cardPosition - 1].flipCard();
         break;
     }
   }
 
   private shouldFlipCardAbove(card: Card, position: number) {
-    
     if (position < 2) return false;
 
     let compCard = this.fieldCards[position - 3];
     if (!compCard) return false;
+    if (card.owner == compCard.owner) return false;
 
-    let sameOwner = card.owner == compCard.owner;
-    if (sameOwner) return false;
-
-    console.log(`Comparing ${card.name} to ${compCard.name}`);
     return card.topRank > compCard.bottomRank;
-
   }
 
   private shouldFlipCardBelow(card: Card, position: number) {
@@ -157,11 +101,8 @@ export class BattleFieldComponent implements OnInit {
 
     let compCard = this.fieldCards[position + 3];
     if (!compCard) return false;
+    if (card.owner == compCard.owner) return false;
 
-    let sameOwner = card.owner == compCard.owner;
-    if (sameOwner) return false;
-
-    console.log(`Comparing ${card.name} to ${compCard.name}`);
     return card.bottomRank > compCard.topRank;
   }
 
@@ -170,11 +111,8 @@ export class BattleFieldComponent implements OnInit {
 
     let compCard = this.fieldCards[position - 1];
     if (!compCard) return false;
+    if (card.owner == compCard.owner) return false;
 
-    let sameOwner = card.owner == compCard.owner;
-    if (sameOwner) return false;
-
-    console.log(`Comparing ${card.name} to ${compCard.name}`);
     return card.leftRank > compCard.rightRank;
   }
 
@@ -183,11 +121,8 @@ export class BattleFieldComponent implements OnInit {
 
     let compCard = this.fieldCards[position + 1];
     if (!compCard) return false;
+    if (card.owner == compCard.owner) return false;
 
-    let sameOwner = card.owner == compCard.owner;
-    if (sameOwner) return false;
-
-    console.log(`Comparing ${card.name} to ${compCard.name}`);
     return card.rightRank > compCard.leftRank;
   }
 
