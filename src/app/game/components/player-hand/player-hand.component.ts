@@ -11,13 +11,13 @@ import { GameService } from '../../services/game.service';
 })
 export class PlayerHandComponent implements OnInit {
 
-  @Input() $hand!: Observable<Card[]>;
-  hand!: Card[];
+  @Input() hand$!: Observable<(Card | null)[]>;
+  hand!: (Card | null)[];
 
   constructor(private gameService: GameService) { }
 
   ngOnInit(): void {
-    this.$hand.subscribe(next => this.hand = next);
+    this.hand$.subscribe(next => this.hand = next);
   }
   
   peekCard(cardSpace: CardSpaceComponent) {

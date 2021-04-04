@@ -10,14 +10,14 @@ import { GameService } from '../../services/game.service';
 })
 export class GameComponent {
 
-  $fieldCards!: Observable<Card[]>;
-  $opponentHand!: Observable<Card[]>;
-  $playerHand!: Observable<Card[]>;
+  fieldCards$!: Observable<(Card | null)[]>;
+  opponentHand$!: Observable<(Card | null)[]>;
+  playerHand$!: Observable<(Card | null)[]>;
 
   constructor(private gameService: GameService) {
-    this.$fieldCards = this.gameService.$fieldCards;
-    this.$opponentHand = this.gameService.$opponentHand;
-    this.$playerHand = this.gameService.$playerHand;
+    this.fieldCards$ = this.gameService.fieldCards$;
+    this.opponentHand$ = this.gameService.opponentHand$;
+    this.playerHand$ = this.gameService.playerHand$;
   }
 
 }

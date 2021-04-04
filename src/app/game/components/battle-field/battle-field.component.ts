@@ -11,15 +11,15 @@ import { GameService } from '../../services/game.service';
 })
 export class BattleFieldComponent implements OnInit {
 
-  @Input() $fieldCards!: Observable<Card[]>;
-  fieldCards!: Card[];
+  @Input() fieldCards$!: Observable<(Card | null)[]>;
+  fieldCards!: (Card | null)[];
 
   @ViewChildren(CardSpaceComponent) cardSpaces!: QueryList<CardSpaceComponent>;
 
   constructor(private gameService: GameService) { }
 
   ngOnInit(): void {
-    this.$fieldCards.subscribe(next => this.fieldCards = next);
+    this.fieldCards$.subscribe(next => this.fieldCards = next);
   }
 
   getCardPosition($event: Event) {
