@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
+
 import { BattleFieldComponent } from './components/battle-field/battle-field.component';
-import { CardComponent } from '../shared/components/card/card.component';
-import { CardSpaceComponent } from '../shared/components/card-space/card-space.component';
 import { PlayerHandComponent } from './components/player-hand/player-hand.component';
 import { GameComponent } from './components/game/game.component';
-import { SharedModule } from '../shared/shared.module';
+
 
 
 
@@ -17,7 +18,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   exports: [
     BattleFieldComponent,
