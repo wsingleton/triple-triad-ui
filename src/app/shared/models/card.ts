@@ -1,3 +1,5 @@
+import { Element } from "./element";
+
 export class Card {
 
     id: string;
@@ -7,6 +9,7 @@ export class Card {
     bottomRank: number;
     leftRank: number;
     obverseImage: string;
+    element: Element;
     isStolen: boolean;
     inPlay: boolean;
     isSelected: boolean;
@@ -15,8 +18,9 @@ export class Card {
         id: string, name: string, 
         tRank: number, rRank: number, 
         bRank: number, lRank: number, 
-        obImg: string, inPlay?: boolean, 
-        isStolen?: boolean, isSelected?: boolean) 
+        obImg: string, element?: Element,
+        inPlay?: boolean, isStolen?: boolean, 
+        isSelected?: boolean) 
     {
         this.id = id;
         this.name = name;
@@ -25,6 +29,7 @@ export class Card {
         this.bottomRank = bRank;
         this.leftRank = lRank;
         this.obverseImage = obImg;
+        this.element = element || Element.NONE;
         this.inPlay = inPlay || false;
         this.isStolen = isStolen || false;
         this.isSelected = isSelected || false;
