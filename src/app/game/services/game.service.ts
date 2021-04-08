@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Card } from 'src/app/shared/models/card';
+import { Element } from 'src/app/shared/models/element';
+import { Card } from '../../shared/models/card';
 
 interface CardMetadata {
   index: number,
@@ -31,11 +32,11 @@ export class GameService {
     this.fieldCards$ = this.fieldCardsSource.asObservable();
 
     this.opponentHandSource = new BehaviorSubject<(Card | null)[]>([
-      new Card('jshhe93rhi', 'Geezard', 1, 4, 1, 5, 'assets/cards/level-1/g1_geezard-card.png', false, true),
-      new Card('ig538394hh', 'Funguar', 5, 1, 1, 3, 'assets/cards/level-1/g2_funguar-card.png', false, true),
-      new Card('g343545g45', 'Bite Bug', 1, 3, 3, 5, 'assets/cards/level-1/g3_bite-bug-card.png', false, true),
-      new Card('g46g4b544g', 'Cockatrice', 2, 1, 2, 6, 'assets/cards/level-1/g11_cockatrice-card.png', false, true),
-      new Card('ser43rewe4', 'Quistis', 9, 6, 8, 2, 'assets/cards/level-10/g104_quistis-card.png', false, true)
+      new Card('jshhe93rhi', 'Geezard', 1, 4, 1, 5, 'assets/cards/level-1/g1_geezard-card.png', Element.NONE, false, true),
+      new Card('ig538394hh', 'Funguar', 5, 1, 1, 3, 'assets/cards/level-1/g2_funguar-card.png', Element.NONE, false, true),
+      new Card('g343545g45', 'Bite Bug', 1, 3, 3, 5, 'assets/cards/level-1/g3_bite-bug-card.png', Element.NONE, false, true),
+      new Card('g46g4b544g', 'Cockatrice', 2, 1, 2, 6, 'assets/cards/level-1/g11_cockatrice-card.png', Element.THUNDER, false, true),
+      new Card('ser43rewe4', 'Quistis', 9, 6, 8, 2, 'assets/cards/level-10/g104_quistis-card.png', Element.NONE, false, true)
     ]);
 
     this.opponentHand$ = this.opponentHandSource.asObservable();
@@ -44,9 +45,9 @@ export class GameService {
     this.playerHandSource = new BehaviorSubject<(Card | null)[]>([
       new Card('ig538394hh', 'Grat', 7, 1, 3, 1, 'assets/cards/level-2/g12_grat-card.png'),
       new Card('ser43rewe4', 'Buel', 6, 2, 2, 3, 'assets/cards/level-2/g13_buel-card.png'),
-      new Card('g46g4b544g', 'Oilboyle', 1, 8, 4, 8, 'assets/cards/level-6/g64_oilboyle-card.png'),
-      new Card('g343545g45', 'Glacial Eye', 6, 1, 4, 3, 'assets/cards/level-2/g15_glacial-eye-card.png'),
-      new Card('pooiuy7332', 'Abyss Worm', 7, 2, 3, 5, 'assets/cards/level-3/g33_abyss-worm-card.png')
+      new Card('g46g4b544g', 'Oilboyle', 1, 8, 4, 4, 'assets/cards/level-6/g64_oilboyle-card.png'),
+      new Card('g343545g45', 'Glacial Eye', 6, 1, 4, 3, 'assets/cards/level-2/g15_glacial-eye-card.png', Element.ICE),
+      new Card('pooiuy7332', 'Abyss Worm', 7, 2, 3, 5, 'assets/cards/level-3/g33_abyss-worm-card.png', Element.EARTH)
     ]);
 
     this.playerHand$ = this.playerHandSource.asObservable();
