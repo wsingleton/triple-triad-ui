@@ -110,6 +110,8 @@ export class BattleFieldComponent implements OnInit {
     if (position == 0 || position == 3 || position == 6) return false;
 
     let compCard = this.fieldCards[position - 1];
+    console.dir(card);
+    console.dir(compCard);
     if (!compCard) return false;
     if (card.owner == compCard.owner) return false;
 

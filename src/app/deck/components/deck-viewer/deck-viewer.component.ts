@@ -16,7 +16,7 @@ export class DeckViewerComponent implements OnInit {
   currentPage: number;
 
   constructor(private cardService: CardService) {
-    this.deckCards = cardService.getPlayerCards('player-1');
+    this.deckCards = this.cardService.getPlayerCards('player-1');
     this.selectedCard = null;
     this.start = 0;
     this.end = 11;
