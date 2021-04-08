@@ -39,4 +39,8 @@ export class CardComponent {
     this.cdRef.detectChanges();
   }
 
+  determineBackgroundGradient() {
+    return (this.cardData?.isStolen ? 'linear-gradient(#ecd8d8, #c65d7b)' : 'linear-gradient(#e5fdfd, #105db5)')
+  }
+
 }

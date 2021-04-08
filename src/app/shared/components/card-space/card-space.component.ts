@@ -8,14 +8,14 @@ interface CardSpaceMetadata {
 }
 
 @Component({
-  selector: 'card-space[cardData][isFieldSpace]',
+  selector: 'card-space[cardData]',
   templateUrl: './card-space.component.html',
   styleUrls: ['./card-space.component.scss']
 })
 export class CardSpaceComponent implements OnInit, OnChanges {
 
-  @Input() cardData: Card | null;
-  @Input() isFieldSpace!: boolean;
+  @Input() cardData!: Card | null;
+  @Input() isFieldSpace: boolean;
   @ViewChild(CardComponent) cardComponent!: CardComponent;
 
   @Output() cardAdded = new EventEmitter<SimpleChanges>();
@@ -24,6 +24,7 @@ export class CardSpaceComponent implements OnInit, OnChanges {
 
   constructor() {
     this.cardData = null;
+    this.isFieldSpace = false;
   }
 
   ngOnChanges(changes: SimpleChanges): void {

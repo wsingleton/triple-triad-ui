@@ -9,7 +9,11 @@
         }"
         [@cardAnimation]="cardData?.currentState"
     >
-        <div *ngIf="cardData" class="card-face" [ngStyle]="{'background-image': (cardData?.isStolen ? 'linear-gradient(#ecd8d8, #c65d7b)' : 'linear-gradient(#e5fdfd, #105db5)')}">
+        <div 
+            class="card-face" 
+            *ngIf="cardData" 
+            [ngStyle]="{'background-image': determineBackgroundGradient()}"
+        >
             <img [src]="cardData?.obverseImage"/>
         </div>
         <div *ngIf="cardData?.inPlay" class="card-face card-reverse">
