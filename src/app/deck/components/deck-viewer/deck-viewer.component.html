@@ -1,1 +1,22 @@
-<p>deck-viewer works!</p>
+<div id="deck-viewer-container">
+    <fieldset id="viewer-fieldset">
+        <p>CARDS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P.{{ currentPage }}</p>
+        <div id="card-list">
+            <listed-card 
+                class="listed-card" 
+                [card]="card" 
+                (cardSelected)="displaySelected(card)" 
+                *ngFor="let card of deckCards | slice:start:end; let i = index">
+            </listed-card>
+        </div>
+        <div id="deck-viewer-nav">
+            <img id="nav-prev-page" (click)="previousPage()" src="assets/common/arrow-left.png">
+            <img id="nav-next-page" (click)="nextPage()" src="assets/common/arrow-right.png"> 
+        </div>
+    </fieldset>
+
+    
+    
+    <card-space id="displayed-card" *ngIf="selectedCard" [cardData]="selectedCard" [isFieldSpace]="false"></card-space>
+        
+</div>

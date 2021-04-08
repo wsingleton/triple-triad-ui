@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Card } from 'src/app/shared/models/card';
+import { CardService } from 'src/app/shared/services/card.service';
 
 @Component({
   selector: 'deck-viewer',
@@ -7,9 +9,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeckViewerComponent implements OnInit {
 
-  constructor() { }
+  deckCards: Card[];
+  selectedCard: Card | null;
+  start: number;
+  end: number;
+  currentPage: number;
+
+  constructor(private cardService: CardService) {
+    this.deckCards = cardService.getPlayerCards('player-1');
+    this.selectedCard = null;
+    this.start = 0;
+    this.end = 11;
+    this.currentPage = 1;
+  }
 
   ngOnInit(): void {
+  }
+
+  displaySelected(card: Card) {
+    this.selectedCard = card;
+  }
+
+  nextPage() {
+    if (this.end >= this.deckCards.length) return;
+    this.start += 11;
+    this.end += 11;
+    this.currentPage += 1;
+    this.selectedCard = null;
+    console.log(`new starting index: ${this.start}, new ending index: ${this.end}, deck length: ${this.deckCards.length}`)
+  }
+
+  previousPage() {
+    if (this.start <= 0) return;
+    this.start -= 11;
+    this.end -= 11;
+    this.currentPage -= 1;
+    this.selectedCard = null;
+    console.log(`new starting index: ${this.start}, new ending index: ${this.end}, deck length: ${this.deckCards.length}`)
   }
 
 }

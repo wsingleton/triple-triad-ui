@@ -1,0 +1,52 @@
+#deck-viewer-container {
+    display: grid;
+    grid-template-columns: repeat(2, .2fr);
+}
+
+#viewer-fieldset {
+    border: none;
+    background-image: linear-gradient(to right, #656665, #9b9e9a);
+    padding: 0;
+    border: solid 1px  #3d3835;
+    box-shadow: .1rem .1rem #3d3835;
+
+    > p {
+        color: #c6c4c5;
+        text-shadow: 2px 1px #1b1718;
+        font-weight: bold;
+        margin: 0;
+        font-family: Tahoma, Helvetica, sans-serif;
+        font-size: xx-small;
+    }
+}
+
+#card-list {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    padding-left: .4rem;
+    background-image: linear-gradient(to right, #656665, #9b9e9a);
+}
+
+#displayed-card {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    grid-row-end: 11;
+    margin-top: .5rem;
+    margin-left: 1rem;
+}
+
+#deck-viewer-nav {
+    grid-column-end: 2;
+    grid-row-start: 12;
+    background-image: linear-gradient(to right, #656665, #9b9e9a);
+    height: 1rem;
+}
+
+#nav-prev-page, #nav-next-page {
+    height: .75rem;
+}
+
+#nav-next-page {
+    padding-top: 2px;
+    float: right;
+}
