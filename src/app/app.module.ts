@@ -4,9 +4,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
+import { GameModule } from './game/game.module';
+import { DeckModule } from './deck/deck.module';
 
 import { AppComponent } from './app.component';
-import { GameModule } from './game/game.module';
+
 
 @NgModule({
   declarations: [
@@ -17,8 +19,8 @@ import { GameModule } from './game/game.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    GameModule
-    
+    GameModule,
+    DeckModule
   ],
   providers: [],
   bootstrap: [AppComponent]
