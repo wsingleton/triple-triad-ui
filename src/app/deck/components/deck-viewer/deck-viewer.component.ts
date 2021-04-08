@@ -36,7 +36,6 @@ export class DeckViewerComponent implements OnInit {
     this.end += 11;
     this.currentPage += 1;
     this.selectedCard = null;
-    console.log(`new starting index: ${this.start}, new ending index: ${this.end}, deck length: ${this.deckCards.length}`)
   }
 
   previousPage() {
@@ -45,7 +44,6 @@ export class DeckViewerComponent implements OnInit {
     this.end -= 11;
     this.currentPage -= 1;
     this.selectedCard = null;
-    console.log(`new starting index: ${this.start}, new ending index: ${this.end}, deck length: ${this.deckCards.length}`)
   }
 
 }
