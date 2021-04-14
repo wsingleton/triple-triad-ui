@@ -1,38 +1,30 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { CardSpaceComponent } from 'src/app/shared/components/card-space/card-space.component';
-import { Card } from '../../../shared/models/card';
-import { GameService } from '../../services/game.service';
+import { Hand } from 'src/app/shared/models/hand';
+import { getHandByOwner } from '../../state/game.selector';
+import { GameState } from '../../state/game.state';
 
 @Component({
-  selector: 'player-hand',
+  selector: 'player-hand[owner]',
   templateUrl: './player-hand.component.html',
   styleUrls: ['./player-hand.component.scss']
 })
 export class PlayerHandComponent implements OnInit {
 
-  @Input() hand$!: Observable<(Card | null)[]>;
-  hand!: (Card | null)[];
+  @Input() owner!: 'opponent' | 'player';
 
-  constructor(private gameService: GameService) { }
+  // hand$!: Observable<Hand>
+  // hand!: Hand;
 
-  ngOnInit(): void {
-    this.hand$.subscribe(next => this.hand = next);
-  }
-  
-  peekCard(cardSpace: CardSpaceComponent) {
-    cardSpace.peekCard();
+  constructor(private store: Store<GameState>) { }
+
+  ngOnInit() {
+    
   }
 
-  selectCard(cardSpace: CardSpaceComponent) {
-
-    if (cardSpace.metadata.containsCard){
-      this.gameService.addCardToField({
-        index: +(<any>cardSpace)['__ngContext__'][13][0].id,
-        card: <Card>cardSpace.cardData,
-        owner: cardSpace.cardData?.isStolen ? 'opponent' : 'player'
-      });
-    }
-
+  get handOwner() {
+    return (this.owner === 'opponent') ? 'opponentHand' : 'playerHand';
   }
+
 }

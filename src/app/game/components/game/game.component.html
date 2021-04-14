@@ -1,5 +1,5 @@
-<div id="game-container">
-    <player-hand id="opponent-hand" [hand$]="opponentHand$"></player-hand>
-    <battle-field id="battle-field" [fieldCards$]="fieldCards$"></battle-field>
-    <player-hand id="player-hand" [hand$]="playerHand$"></player-hand>
+<div class="game">
+    <player-hand class="opponent-hand" [owner]="'opponent'"></player-hand>
+    <battle-field class="field"></battle-field>
+    <player-hand class="player-hand" [owner]="'player'"></player-hand>
 </div>

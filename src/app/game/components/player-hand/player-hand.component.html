@@ -1,14 +1,9 @@
-<div id="player-hand-container">
-    <div *ngFor="let card of hand; let i = index">
-        <card-space 
-            #cardSpace
-            [id]="i" 
-            class="card{{i}}"
-            (mouseenter)="peekCard(cardSpace)" 
-            (mouseleave)="peekCard(cardSpace)"
-            (click)="selectCard(cardSpace)"
-            [cardData]="card" 
-            [isFieldSpace]="false">
+<div class="player-hand">
+    <div *ngFor="let index of [0,1,2,3,4]">
+        <card-space
+            class="card-{{index}}"
+            [placement]="handOwner"
+            [position]="index">
         </card-space>
     </div>
 </div>

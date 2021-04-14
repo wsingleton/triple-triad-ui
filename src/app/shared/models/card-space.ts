@@ -8,13 +8,15 @@ export class CardSpace {
     positionId!: string;
     element!: Element;
     cardData: Card | undefined;
-    owner: Player | undefined;
+    owner: 'opponent' | 'player' | 'vacant';
+    isSelected: boolean;
 
-    constructor(positionId: string, element: Element = Element.NONE, cardData?: Card, owner?: Player) {
+    constructor(positionId: string, element?: Element, cardData?: Card, owner?: 'opponent' | 'player' | 'vacant', isSelected?: boolean) {
         this.positionId = positionId;
-        this.element = element;
+        this.element = element || Element.NONE;
         this.cardData = cardData;
-        this.owner = owner;
+        this.owner = owner || 'vacant';
+        this.isSelected = isSelected || false;
     }
 
     get spaceType(): SpaceType {

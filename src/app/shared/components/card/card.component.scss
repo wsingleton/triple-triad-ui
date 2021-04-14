@@ -3,7 +3,6 @@
     border-radius: 5px;
     height: 19rem;
     width: 17rem;
-    transform-style: preserve-3d;
 }
 
 .card-face {
@@ -20,24 +19,4 @@
 
 .card-reverse {
     transform: rotateY(180deg);
-}
-
-.opponentCard.selected {
-    transition: transform 1s;
-    transform: translateX(25%);
-}
-
-.playerCard.selected {
-    transition: transform 1s;
-    transform: translateX(-25%);
-}
-
-.opponentCard.unselected {
-    transition: transform 1s;
-    transform: translateX(0%);
-}
-
-.playerCard.unselected {
-    transition: transform 1s;
-    transform: translateX(0%);
 }

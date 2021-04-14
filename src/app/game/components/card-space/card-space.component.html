@@ -1,0 +1,18 @@
+<div class="card-space"
+    [ngClass]="{
+        'card-space--vacant': metadata.owner === 'vacant',
+        'card-space--opponent-owned': metadata.owner === 'opponent',
+        'card-space--player-owned': metadata.owner === 'player',
+        'card-space--peek': isPeeked,
+        'card-space--unpeek': !isPeeked
+    }"
+    (mouseenter)="togglePeek()"
+    (mouseout)="togglePeek()">
+
+        <card *ngIf="metadata.cardData" [cardData]="metadata.cardData" class="card-space--occupied"></card>
+
+        <div *ngIf="placement == 'field' && !metadata.cardData" class="card-space--vacant">
+            <img src="assets/cards/empty-card-placeholder.png"/>
+        </div>
+        
+</div>

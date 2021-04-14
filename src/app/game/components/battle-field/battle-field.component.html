@@ -1,12 +1,5 @@
 <div class="grid">
-    <div *ngFor="let card of fieldCards; let i = index">
-        <card-space 
-            #cardSpace 
-            [id]="i"  
-            [cardData]="card" 
-            [isFieldSpace]=true
-            (click)="getCardPosition($event)"
-            (cardAdded)="compareAdjacentSpaces(cardSpace)">
-        </card-space>
+    <div *ngFor="let card of fieldSpaces; let i = index">
+        <card-space [placement]="'field'" [position]="i"></card-space>
     </div>
 </div>

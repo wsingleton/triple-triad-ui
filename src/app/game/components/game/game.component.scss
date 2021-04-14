@@ -1,13 +1,13 @@
-#game-container {
+.game {
     display: grid;
     grid-template-columns: .8fr 1fr 1fr;
 }
 
-#opponent-hand {
+.opponent-hand {
     padding: 0 4rem 0 3rem;
 }
 
-#player-hand {
+.player-hand {
     padding: 0 0 0 8rem;
 }
 

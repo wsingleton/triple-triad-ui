@@ -1,26 +1,10 @@
 <div id="card-container">
-    <div #card 
-        [ngClass]="{
-            'card': true, 
-            'opponentCard': cardData?.isStolen, 
-            'playerCard': !cardData?.isStolen, 
-            'selected': cardData?.isSelected,
-            'unselected': !cardData?.isSelected && !cardData?.inPlay
-        }"
-        [@cardAnimation]="cardData?.currentState"
-    >
-        <div 
-            class="card-face" 
-            *ngIf="cardData" 
-            [ngStyle]="{'background-image': determineBackgroundGradient()}"
-        >
-            <img [src]="cardData?.obverseImage"/>
+    <div class="card">
+        <div class="card-face">
+            <img [src]="cardData.obverseImage"/>
         </div>
-        <div *ngIf="cardData?.inPlay" class="card-face card-reverse">
-            <img [src]="cardData?.reverseImage" />
-        </div>
-        <div *ngIf="isFieldCard && !cardData" class="card-face">
-            <img src="assets/cards/empty-card-placeholder.png"/>
+        <div *ngIf="inPlay" class="card-face card-reverse">
+            <img [src]="cardData.reverseImage" />
         </div>
     </div>
 </div>

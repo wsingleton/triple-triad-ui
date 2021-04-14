@@ -1,0 +1,46 @@
+.card-space {
+    display: inline-block;
+    transform-style: preserve-3d;
+    border-color: #fff;
+    height: 19rem;
+    width: 17rem;
+}
+
+.card-space--vacant {
+    height: 19rem;
+    width: 17rem;
+
+    > img {
+        width: inherit;
+        height: inherit;
+        object-fit: fill;
+    }
+}
+
+.card-space--opponent-owned {
+    background-image: linear-gradient(#ecd8d8, #c65d7b);
+}
+
+.card-space--player-owned {
+    background-image: linear-gradient(#e5fdfd, #105db5);
+}
+
+.card-space--opponent-owned.card-space--peek {
+    transition: transform 1s;
+    transform: translateX(25%);
+}
+
+.card-space--player-owned.card-space--peek {
+    transition: transform 1s;
+    transform: translateX(-25%);
+}
+
+.card-space--opponent-owned.card-space--unpeek {
+    transition: transform 1s;
+    transform: translateX(0%);
+}
+
+.card-space--player-owned.card-space--unpeek {
+    transition: transform 1s;
+    transform: translateX(0%);
+}
