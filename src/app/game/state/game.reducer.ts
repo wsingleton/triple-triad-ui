@@ -80,8 +80,6 @@ export const gameReducer = createReducer(
 
         let hand = (owner === 'opponent') ? state.opponentHand : state.playerHand;
         let alteredSpace = hand[<0 | 1 | 2 | 3 | 4>handIndex];
-        console.log(alteredSpace)
-        console.log(hand);
                 
         return (owner === 'opponent') ? 
         { 

@@ -41,10 +41,7 @@ export const getCardSpaceMetadata = createSelector(
                 return state.game.field[props.position]
         }
     },
-    (cardSpace: CardSpace) => {
-        console.log(cardSpace)
-        return cardSpace
-    }
+    (cardSpace: CardSpace) => cardSpace
 );
 
 // export const selectCardByIndexPosition = createSelector(
