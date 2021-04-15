@@ -3,8 +3,9 @@ import { CardSpace } from "src/app/shared/models/card-space";
 import { Element } from "src/app/shared/models/element";
 import { Player } from "src/app/shared/models/player";
 import { GameState } from "./game.state";
-import { cardAddedToHandFromDeck, cardMovedFromHandToField, cardRemovedFromHandBackToDeck, cardTaken, fieldSpaceSelected, handCardSelected } from "./game.actions";
+import { cardAddedToHandFromDeck, cardMovedFromHandToField, cardRemovedFromHandBackToDeck, cardTaken, fieldSpaceSelected, handCardSelected, moveSelectedCardToSelectedSpace } from "./game.actions";
 import { Card } from "src/app/shared/models/card";
+import { Field } from "src/app/shared/models/field";
 
 const initialState: GameState = {
     gameId: 1,
@@ -41,46 +42,11 @@ export const gameReducer = createReducer(
     
     initialState,
 
-    // on(cardAddedToHandFromDeck, (state = initialState, {handIndex, cardData, owner}) => {
-
-    //     let modMetadata = (owner === 'opponent') ? 
-    //         {hand: state.opponentHand, spaceToAddCard: state.opponentHand[handIndex], playerIndex: 0} 
-    //         : 
-    //         {hand: state.playerHand, spaceToAddCard: state.playerHand[handIndex], playerIndex: 1};
-
-    //     modMetadata.spaceToAddCard.cardData = cardData;
-    //     modMetadata.spaceToAddCard.owner = state.players[modMetadata.playerIndex];
-    //     modMetadata.hand[handIndex] = modMetadata.spaceToAddCard;
-
-    //     return (owner === 'opponent') ? 
-    //     { ...state, opponentHand: modMetadata.hand }
-    //     :
-    //     { ...state, playerHand: modMetadata.hand };
-
-    // }),
-
-    // on(cardRemovedFromHandBackToDeck, (state = initialState, {handIndex, owner}) => {
-        
-    //     let modMetadata = (owner === 'opponent') ? 
-    //         {hand: state.opponentHand, spaceToRemoveCard: state.opponentHand[handIndex]} 
-    //         : 
-    //         {hand: state.playerHand, spaceToRemoveCard: state.playerHand[handIndex]};
-
-    //     modMetadata.spaceToRemoveCard.cardData = undefined;
-    //     modMetadata.hand[handIndex] = modMetadata.spaceToRemoveCard;
-
-    //     return (owner === 'opponent') ? 
-    //     { ...state, opponentHand: modMetadata.hand }
-    //     :
-    //     { ...state, playerHand: modMetadata.hand };
-
-    // }),
-
     on(handCardSelected, (state = initialState, {handIndex, owner}) => {
 
         let hand = (owner === 'opponent') ? state.opponentHand : state.playerHand;
-        let alteredSpace = hand[<0 | 1 | 2 | 3 | 4>handIndex];
-                
+        let alteredSpace = hand[<0|1|2|3|4>handIndex];
+        console.log(state)
         return (owner === 'opponent') ? 
         { 
             ...state,
@@ -102,25 +68,57 @@ export const gameReducer = createReducer(
     }),
 
     on(fieldSpaceSelected, (state = initialState, {fieldIndex}) => {
-        return { ...state, selectedSpace: state.field[fieldIndex] };
+        let key = <0|1|2|3|4|5|6|7|8>fieldIndex;
+        let newState = { ...state, selectedSpace: state.field[key] }
+        console.log(newState)
+        return newState;
     }),
 
-    on(cardMovedFromHandToField, (state = initialState, {currentTurnOwner}) => {
+    on(moveSelectedCardToSelectedSpace, (state = initialState) => {
+        
+        let fieldKey = state.selectedSpace!.position;
+        let handKey = <0|1|2|3|4>state.selectedCard!.position;
 
-        let nextTurnOwnerIndex = (currentTurnOwner === 'opponent') ? 1 : 0;
-        state.selectedSpace!.cardData = state.selectedCard!.cardData;
+        if (state.selectedCard!.owner == 'opponent') { 
+            return { 
+                ...state,
+                field: { 
+                    ...state.field, 
+                    [fieldKey]: state.selectedCard! 
+                },
+                opponentHand: { 
+                    ...state.opponentHand, 
+                    [handKey]: {
+                        cardData: undefined, 
+                        containsCard: state.opponentHand[handKey].containsCard,  
+                        spaceType: state.opponentHand[handKey].spaceType,
+                        position: state.opponentHand[handKey].position
+                    }
+                },
+                selectedCard: undefined,
+                selectedSpace: undefined
+            };
+        } else {
+            return { 
+                ...state,
+                field: { 
+                    ...state.field, 
+                    [fieldKey]: state.selectedCard! 
+                },
+                playerHand: { 
+                    ...state.playerHand,
+                    [handKey]: { 
+                        cardData: undefined, 
+                        containsCard: state.playerHand[handKey].containsCard,  
+                        spaceType: state.playerHand[handKey].spaceType,
+                        position: state.playerHand[handKey].position
+                    }
+                },
+                selectedCard: undefined,
+                selectedSpace: undefined
+            };
 
-        return {
-            ...state,
-            turnOwner: state.players[nextTurnOwnerIndex],
-            selectedCard: undefined,
-            selectedSpace: undefined
-        };
-    }),
-
-    on(cardTaken, (state = initialState, {takenFieldIndex, newOwner}) => {
-        let takenCard = state.field[takenFieldIndex];
-        takenCard.owner = newOwner;
-        return { ...state };
+        }
+        
     })
 );

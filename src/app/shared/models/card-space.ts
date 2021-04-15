@@ -1,6 +1,5 @@
 import { Card } from "./card";
 import { Element } from "./element";
-import { Player } from "./player";
 import { SpaceType } from "./space-type";
 
 export class CardSpace {
@@ -30,6 +29,10 @@ export class CardSpace {
 
     get containsCard(): boolean {
         return !!this.cardData;
+    }
+
+    get position(): 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 {
+        return <0|1|2|3|4|5|6|7|8>+this.positionId.substr(2, 1);
     }
     
 }

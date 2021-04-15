@@ -29,4 +29,8 @@ export const cardMovedFromHandToField = createAction(
 export const cardTaken = createAction(
     '[Game] Card Taken',
     props<{takenFieldIndex: number, newOwner: 'opponent' | 'player'}>()
-)
+);
+
+export const moveSelectedCardToSelectedSpace = createAction(
+    '[Game] Selected Card Moved To Selected Space'
+);

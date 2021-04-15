@@ -1,9 +1,10 @@
 <div class="player-hand">
     <div *ngFor="let index of [0,1,2,3,4]">
-        <card-space
+        <card-space #cardSpace
             class="card-{{index}}"
             [placement]="handOwner"
-            [position]="index">
+            [position]="index"
+            (click)="selectCard(cardSpace)">
         </card-space>
     </div>
 </div>
