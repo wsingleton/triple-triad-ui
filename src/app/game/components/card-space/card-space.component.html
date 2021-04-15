@@ -9,10 +9,10 @@
     (mouseenter)="togglePeek()"
     (mouseout)="togglePeek()">
 
-        <card *ngIf="metadata.cardData" [cardData]="metadata.cardData" class="card-space--occupied"></card>
+    <card *ngIf="metadata.cardData" [cardData]="metadata.cardData" class="card-space--occupied"></card>
 
-        <div *ngIf="placement == 'field' && !metadata.cardData" class="card-space--vacant">
-            <img src="assets/cards/empty-card-placeholder.png"/>
-        </div>
+    <div *ngIf="placement == 'field' && !metadata.cardData" class="card-space--vacant">
+        <img src="assets/cards/empty-card-placeholder.png"/>
+    </div>
         
 </div>
